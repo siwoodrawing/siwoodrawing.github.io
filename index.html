@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Siwoo Kim Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio concept for Siwoo Kim featuring a full-screen hero slideshow, asymmetric work grid, career section, and slide-up project detail view."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="intro-active">
+    <div class="intro-overlay" id="intro-overlay" aria-hidden="true">
+      <div class="intro-overlay-inner">
+        <p class="intro-line">
+          <span class="intro-name" id="intro-name">SIWOO KIM</span>
+        </p>
+      </div>
+    </div>
+
+    <header class="topbar">
+      <button
+        class="menu-toggle"
+        id="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-menu"
+        aria-label="Open menu"
+      >
+        <span></span>
+        <span></span>
+      </button>
+      <div class="topbar-center">
+        <nav class="topbar-tabs" aria-label="Project categories">
+          <button class="topbar-tab" type="button" data-gallery-category="concept-art">CONCEPT ART</button>
+          <button class="topbar-tab" type="button" data-gallery-category="illustration">ILLUSTRATION</button>
+          <button class="topbar-tab" type="button" data-gallery-category="personal-work">PERSONAL WORK</button>
+        </nav>
+      </div>
+      <a class="brand" href="#home" aria-label="Go to home">Siwoo Kim</a>
+    </header>
+
+    <div class="menu-overlay" id="site-menu" aria-hidden="true">
+      <button class="menu-scrim" type="button" data-menu-close aria-label="Close menu"></button>
+      <aside class="menu-drawer" aria-label="Primary">
+        <nav class="menu-nav">
+          <button class="menu-link" type="button" data-menu-link data-gallery-category="concept-art">WORK</button>
+          <button class="menu-link" type="button" data-menu-link data-nav-target="career">CAREER</button>
+          <button class="menu-link" type="button" data-menu-link data-nav-target="contact">CONTACT</button>
+        </nav>
+        <div class="menu-social">
+          <a href="https://www.instagram.com/yourhandle/" target="_blank" rel="noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2.2A2.8 2.8 0 0 0 4.2 7v10A2.8 2.8 0 0 0 7 19.8h10a2.8 2.8 0 0 0 2.8-2.8V7A2.8 2.8 0 0 0 17 4.2Zm5 2.1a5.7 5.7 0 1 1 0 11.4 5.7 5.7 0 0 1 0-11.4Zm0 2.1a3.6 3.6 0 1 0 0 7.2 3.6 3.6 0 0 0 0-7.2Zm6.1-2.7a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6Z"
+              />
+            </svg>
+          </a>
+          <a href="https://vimeo.com/yourhandle" target="_blank" rel="noreferrer" aria-label="Vimeo">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M22.2 7.2c-.1 3-2.2 7.1-6.2 12.2-4.2 5.3-7.7 7.9-10.6 7.9-1.8 0-3.3-1.7-4.6-5-1.8-6.6-2.9-10.6-3.4-12.1-.8-2.4-1.7-3.6-2.6-3.6-.2 0-1 .5-2.3 1.5L-8 6.2C-5.7 4.2-3.5 2.1-1.2.1c3-2.6 5.2-4 6.7-4.1 1.8-.2 2.9 1.1 3.3 3.8.4 2.9.7 4.7.8 5.3.4 2.4.9 3.7 1.4 3.7.4 0 1-.6 1.8-1.8.8-1.2 1.3-2.2 1.4-2.8.1-1.1-.3-1.7-1.4-1.7-.5 0-1.1.1-1.7.4 1.1-3.6 3.3-5.3 6.4-5.2 2.4.1 3.5 1.6 3.4 4.5Z"
+              />
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/yourhandle" target="_blank" rel="noreferrer" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.2v2.2H8V13h2.4v8Z"
+              />
+            </svg>
+          </a>
+          <a href="https://x.com/yourhandle" target="_blank" rel="noreferrer" aria-label="X">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M18.9 2H22l-6.8 7.8L23 22h-6.1l-4.8-6.8L6.3 22H3.2l7.2-8.3L1 2h6.2l4.3 6.1L18.9 2Zm-1.1 18h1.7L6.2 3.9H4.4Z"
+              />
+            </svg>
+          </a>
+        </div>
+      </aside>
+    </div>
+
+    <section class="gallery-drawer" id="gallery-drawer" aria-hidden="true">
+      <div class="gallery-drawer-inner">
+        <div class="gallery-drawer-head">
+          <div class="gallery-drawer-copy">
+            <p class="gallery-drawer-label" id="gallery-drawer-label"></p>
+            <div class="project-submenu-list" id="project-submenu-list"></div>
+          </div>
+          <button class="gallery-drawer-close" type="button" data-gallery-close>Close</button>
+        </div>
+        <div class="work-grid work-grid-panel" id="work-grid"></div>
+      </div>
+    </section>
+
+    <main>
+      <section class="hero section" id="home" data-section="home">
+        <div class="hero-stage" aria-hidden="true">
+          <div class="hero-slide is-active">
+            <div class="hero-slide-image"></div>
+          </div>
+          <div class="hero-slide">
+            <div class="hero-slide-image"></div>
+          </div>
+        </div>
+        <div class="hero-wash"></div>
+        <div class="hero-inner">
+          <p class="hero-copy">
+            A minimal landing screen where artworks rotate in soft focus before the archive opens into
+            selected projects, process notes, and contact details.
+          </p>
+          <div class="hero-actions">
+            <button class="button-secondary" type="button" data-nav-target="contact">Get In Touch</button>
+          </div>
+        </div>
+        <div class="hero-footer">
+          <span>Random full-screen slideshow from the work archive</span>
+          <span>Scroll to explore</span>
+        </div>
+      </section>
+
+      <section class="career-section section" id="career" data-section="career">
+        <div class="section-heading">
+          <p class="section-kicker">CAREER</p>
+          <h2>Visual storytelling shaped by character, atmosphere, and worldbuilding.</h2>
+          <p>
+            The career section acts as a clean pause between the gallery and the contact area, combining
+            short profile text with a compact timeline and skill focus.
+          </p>
+        </div>
+
+        <div class="career-layout">
+          <article class="career-card career-card-intro">
+            <p class="career-label">Profile</p>
+            <p class="career-lead">
+              Building emotionally clear scenes, memorable silhouettes, and cinematic lighting passes for
+              personal worlds and collaborative pitches.
+            </p>
+          </article>
+
+          <article class="career-card">
+            <p class="career-label">Focus</p>
+            <ul class="career-list">
+              <li>Character concept and costume language</li>
+              <li>Key art mood building and color scripting</li>
+              <li>Illustrative polish for portfolio-ready presentation</li>
+            </ul>
+          </article>
+
+          <article class="career-card">
+            <p class="career-label">Timeline</p>
+            <div class="timeline-item">
+              <span>2018</span>
+              <p>Personal illustration studies and narrative scene work.</p>
+            </div>
+            <div class="timeline-item">
+              <span>2024</span>
+              <p>Sci-fi and stylized character direction pushed into sharper portfolio pieces.</p>
+            </div>
+            <div class="timeline-item">
+              <span>Now</span>
+              <p>Developing a tighter visual identity across concepts, key visuals, and presentation.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact-section section" id="contact" data-section="contact">
+        <div class="contact-frame">
+          <p class="section-kicker">CONTACT</p>
+          <h2>GET IN TOUCH</h2>
+          <p class="contact-copy">
+            Open for illustration, concept work, visual development, and collaborative worldbuilding.
+          </p>
+          <div class="contact-links">
+            <a
+              class="icon-link"
+              href="https://www.instagram.com/yourhandle/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2.2A2.8 2.8 0 0 0 4.2 7v10A2.8 2.8 0 0 0 7 19.8h10a2.8 2.8 0 0 0 2.8-2.8V7A2.8 2.8 0 0 0 17 4.2Zm5 2.1a5.7 5.7 0 1 1 0 11.4 5.7 5.7 0 0 1 0-11.4Zm0 2.1a3.6 3.6 0 1 0 0 7.2 3.6 3.6 0 0 0 0-7.2Zm6.1-2.7a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6Z"
+                />
+              </svg>
+              <span>Instagram</span>
+            </a>
+            <a class="icon-link" href="mailto:hello@yourstudio.com" aria-label="Email">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M3 5h18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 2 9 6 9-6Zm18 10V9l-8.4 5.6a1.1 1.1 0 0 1-1.2 0L3 9v8Z"
+                />
+              </svg>
+              <span>Email</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+      <button class="lightbox-scrim" type="button" data-close aria-label="Close project detail"></button>
+      <section class="lightbox-sheet" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
+        <div class="lightbox-topbar">
+          <p class="dialog-label">Project Detail</p>
+          <button class="lightbox-close" type="button" data-close>Close</button>
+        </div>
+        <div class="lightbox-body">
+          <div class="lightbox-media">
+            <img id="lightbox-image" src="" alt="" />
+          </div>
+          <div class="lightbox-copy">
+            <p class="dialog-meta" id="lightbox-meta"></p>
+            <h3 id="lightbox-title"></h3>
+            <p id="lightbox-description"></p>
+            <ul class="dialog-notes" id="lightbox-notes"></ul>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
