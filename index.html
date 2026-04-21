@@ -12,10 +12,16 @@
   </head>
   <body class="intro-active">
     <div class="intro-overlay" id="intro-overlay" aria-hidden="true">
+      <div class="intro-progress-head">
+        <span class="intro-progress-label">OPENING PORTFOLIO</span>
+        <span class="intro-progress-value" id="intro-progress-value">0%</span>
+      </div>
+      <div class="intro-progress-track" aria-hidden="true">
+        <span class="intro-progress-bar" id="intro-progress-bar"></span>
+      </div>
       <div class="intro-overlay-inner">
-        <p class="intro-line">
-          <span class="intro-name" id="intro-name">SIWOO KIM</span>
-        </p>
+        <p class="intro-kicker">SELECTED WORKS / 2026</p>
+        <div class="intro-flip-name" id="intro-flip-name" aria-label="SIWOO KIM"></div>
       </div>
     </div>
 
@@ -97,27 +103,54 @@
 
     <main>
       <section class="hero section" id="home" data-section="home">
-        <div class="hero-stage" aria-hidden="true">
-          <div class="hero-slide is-active">
-            <div class="hero-slide-image"></div>
+        <div class="hero-sticky">
+          <div class="hero-stage" aria-hidden="true">
+            <div class="hero-slide is-active">
+              <div class="hero-slide-image"></div>
+            </div>
+            <div class="hero-slide">
+              <div class="hero-slide-image"></div>
+            </div>
           </div>
-          <div class="hero-slide">
-            <div class="hero-slide-image"></div>
+          <div class="hero-wash"></div>
+          <div class="hero-shell">
+            <div class="hero-meta-row">
+              <p class="hero-meta hero-meta-left">
+                <span>VISUAL STORYTELLING</span>
+                <span>SEOUL / KR</span>
+              </p>
+              <p class="hero-meta hero-meta-right">
+                <span>PORTFOLIO ARCHIVE</span>
+                <span>SCROLL TO REVEAL</span>
+              </p>
+            </div>
+
+            <div class="hero-name-block" aria-label="Siwoo Kim">
+              <p class="hero-name-line">SIWOO</p>
+              <p class="hero-name-line hero-name-line-offset">KIM</p>
+            </div>
+
+            <div class="hero-bottom">
+              <div class="hero-copy-block">
+                <p class="hero-copy">
+                  Concept art, illustration, and personal worlds shaped through atmosphere, character,
+                  and cinematic framing.
+                </p>
+                <div class="hero-actions">
+                  <button class="button-secondary" type="button" data-nav-target="contact">Get In Touch</button>
+                </div>
+              </div>
+
+              <div class="hero-scroll-note" aria-hidden="true">
+                <span class="hero-scroll-line"></span>
+                <span>IMAGE FADES IN AS TITLE DRIFTS AWAY</span>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="hero-wash"></div>
-        <div class="hero-inner">
-          <p class="hero-copy">
-            A minimal landing screen where artworks rotate in soft focus before the archive opens into
-            selected projects, process notes, and contact details.
-          </p>
-          <div class="hero-actions">
-            <button class="button-secondary" type="button" data-nav-target="contact">Get In Touch</button>
+          <div class="hero-afterglow" aria-hidden="true">
+            <p>SIWOO KIM</p>
+            <span>FULL-SCREEN WORKS</span>
           </div>
-        </div>
-        <div class="hero-footer">
-          <span>Random full-screen slideshow from the work archive</span>
-          <span>Scroll to explore</span>
         </div>
       </section>
 

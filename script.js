@@ -119,43 +119,130 @@ const lightboxDescription = document.getElementById("lightbox-description");
 const lightboxNotes = document.getElementById("lightbox-notes");
 const closeButtons = Array.from(document.querySelectorAll("[data-close]"));
 const introOverlay = document.getElementById("intro-overlay");
-const introName = document.getElementById("intro-name");
+const introProgressValue = document.getElementById("intro-progress-value");
+const introProgressBar = document.getElementById("intro-progress-bar");
+const introFlipName = document.getElementById("intro-flip-name");
+const homeSection = document.getElementById("home");
 
 let lightboxLastTrigger = null;
 let activeHeroSlideIndex = 0;
 let activeGalleryCategory = null;
 let activeHeroId = null;
 let heroQueue = [];
+let heroScrollTicking = false;
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const heroPool = Array.from(
   new Map(projects.map((project) => [project.image, project])).values(),
 );
-const INTRO_REVEAL_DELAY_MS = prefersReducedMotion.matches ? 320 : 2850;
+const INTRO_NAME_TEXT = "SIWOO KIM";
+const INTRO_LOAD_DURATION_MS = prefersReducedMotion.matches ? 180 : 2100;
+const INTRO_REVEAL_DELAY_MS = prefersReducedMotion.matches ? 260 : 1500;
+
+function buildIntroFlipName() {
+  if (!introFlipName || introFlipName.childElementCount) {
+    return;
+  }
+
+  let flipIndex = 0;
+
+  [...INTRO_NAME_TEXT].forEach((character) => {
+    if (character === " ") {
+      const gap = document.createElement("span");
+      gap.className = "intro-flip-gap";
+      introFlipName.append(gap);
+      return;
+    }
+
+    const cell = document.createElement("span");
+    cell.className = "intro-flip-cell";
+    cell.style.setProperty("--flip-index", String(flipIndex));
+    cell.innerHTML = `
+      <span class="intro-flip-card" aria-hidden="true">
+        <span class="intro-flip-char">${character}</span>
+      </span>
+    `;
+
+    introFlipName.append(cell);
+    flipIndex += 1;
+  });
+}
+
+function hideIntroOverlay() {
+  if (!introOverlay) {
+    return;
+  }
+
+  document.body.classList.remove("intro-active");
+  introOverlay.classList.add("is-hidden");
+
+  introOverlay.addEventListener(
+    "transitionend",
+    () => {
+      introOverlay.setAttribute("hidden", "");
+    },
+    { once: true },
+  );
+}
 
 function initializeIntro() {
   if (!introOverlay) {
     return;
   }
 
-  if (prefersReducedMotion.matches && introName) {
-    introName.style.animation = "none";
-    introName.style.width = "auto";
-    introName.style.borderRightColor = "transparent";
+  buildIntroFlipName();
+
+  if (prefersReducedMotion.matches) {
+    introOverlay.style.setProperty("--intro-progress", "1");
+
+    if (introProgressValue) {
+      introProgressValue.textContent = "100%";
+    }
+
+    if (introProgressBar) {
+      introProgressBar.style.transform = "scaleX(1)";
+    }
+
+    introOverlay.classList.add("is-complete");
+    window.setTimeout(hideIntroOverlay, INTRO_REVEAL_DELAY_MS);
+    return;
   }
 
-  window.setTimeout(() => {
-    document.body.classList.remove("intro-active");
-    introOverlay.classList.add("is-hidden");
+  let startTime = null;
 
-    introOverlay.addEventListener(
-      "transitionend",
-      () => {
-        introOverlay.setAttribute("hidden", "");
-      },
-      { once: true },
-    );
-  }, INTRO_REVEAL_DELAY_MS);
+  function step(timestamp) {
+    if (startTime === null) {
+      startTime = timestamp;
+    }
+
+    const elapsed = timestamp - startTime;
+    const progress = Math.min(elapsed / INTRO_LOAD_DURATION_MS, 1);
+    const progressValue = Math.min(100, Math.floor(progress * 100));
+
+    introOverlay.style.setProperty("--intro-progress", progress.toFixed(4));
+
+    if (introProgressValue) {
+      introProgressValue.textContent = `${progressValue}%`;
+    }
+
+    if (progress < 1) {
+      window.requestAnimationFrame(step);
+      return;
+    }
+
+    if (introProgressValue) {
+      introProgressValue.textContent = "100%";
+    }
+
+    if (introProgressBar) {
+      introProgressBar.style.transform = "scaleX(1)";
+    }
+
+    introOverlay.classList.add("is-complete");
+    window.setTimeout(hideIntroOverlay, INTRO_REVEAL_DELAY_MS);
+  }
+
+  window.requestAnimationFrame(step);
 }
 
 function assignHeroSlide(slide, project) {
@@ -475,6 +562,40 @@ function observeSections() {
   sections.forEach((section) => observer.observe(section));
 }
 
+function updateHeroScrollState() {
+  if (!homeSection) {
+    return;
+  }
+
+  const rect = homeSection.getBoundingClientRect();
+  const revealDistance = Math.max(window.innerHeight * 0.95, 1);
+  const progress = Math.min(Math.max((-rect.top) / revealDistance, 0), 1);
+
+  homeSection.style.setProperty("--hero-progress", progress.toFixed(4));
+}
+
+function queueHeroScrollState() {
+  if (heroScrollTicking) {
+    return;
+  }
+
+  heroScrollTicking = true;
+  window.requestAnimationFrame(() => {
+    heroScrollTicking = false;
+    updateHeroScrollState();
+  });
+}
+
+function wireHeroScrollState() {
+  if (!homeSection) {
+    return;
+  }
+
+  updateHeroScrollState();
+  window.addEventListener("scroll", queueHeroScrollState, { passive: true });
+  window.addEventListener("resize", queueHeroScrollState);
+}
+
 function wireHeroSlideshow() {
   heroSlides.forEach((slide) => {
     const heroImage = slide.querySelector(".hero-slide-image");
@@ -494,6 +615,7 @@ function wireHeroSlideshow() {
 
 wireInteractions();
 observeSections();
+wireHeroScrollState();
 wireHeroSlideshow();
 initializeHeroSlideshow();
 initializeIntro();
